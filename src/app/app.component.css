@@ -1,0 +1,18 @@
+.content {
+  text-align: center;
+  /* background-image: linear-gradient(
+    to top,
+    #fbc2eb 0%,
+    #a6c1ee 100%
+  ); */
+  font-family: "PT Sans", sans-serif;
+  background-image: linear-gradient(
+    to top,
+    #cfd9df 0%,
+    #e2ebf0 100%
+  );
+  color: #001628;
+}
+.main-content {
+  min-height: 79.8vh;
+}

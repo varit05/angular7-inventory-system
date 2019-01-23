@@ -1,0 +1,60 @@
+<h4>Assigned Devices</h4>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Emp. ID</th>
+      <th scope="col">Device</th>
+      <th scope="col">In-time</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let device of assignedDevices; let i = index;">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ device.emp_id }}</td>
+      <td>{{ device.device_name }}</td>
+      <td>{{ device.in_time | date:'dd/MM/yyyy, hh:mm a'  }}</td>
+      <td>
+        <button
+          [swal]="{ title: 'Are you sure you want to mark ' + device.device_name + ' as unassigned?', showCancelButton: true }"
+          class="btn btn-danger" 
+          (confirm)="markDeviceAsUnassigned(device)">
+          Mark as Unassigned
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h4>Unassigned Devices</h4>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Emp. ID</th>
+      <th scope="col">Device</th>
+      <th scope="col">In-time</th>
+      <th scope="col">Out-time</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="let device of unAssignedDevices; let i = index;">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ device.emp_id }}</td>
+      <td>{{ device.device_name }}</td>
+      <td>{{ device.in_time | date:'dd/MM/yyyy, hh:mm a' }}</td>
+      <td>{{ device.out_time | date:'dd/MM/yyyy, hh:mm a' }}</td>
+      <td>
+        <button
+          class="btn btn-success"
+          [swal]="{ title: 'Enter the EmpID', input: 'number' }"
+          (confirm)="markDeviceAsAssigned($event, device)">
+          Mark as Assigned
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

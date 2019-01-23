@@ -1,0 +1,26 @@
+[
+  {
+    "emp_id": "668218",
+    "device_name": "iPad 12",
+    "device_type": "iPad Air 2",
+    "in_time": "12-02-19 12:00",
+    "out_time": "12-02-19 2:00",
+    "status": "assigned"
+  },
+  {
+    "emp_id": "668217",
+    "device_name": "iPad 11",
+    "device_type": "iPad Air 2",
+    "in_time": "12-02-19 12:00",
+    "out_time": "12-02-19 2:00",
+    "status": "assigned"
+  },
+  {
+    "emp_id": "668777",
+    "device_name": "iPad 13",
+    "device_type": "iPad Air 2",
+    "in_time": "12-02-19 12:00",
+    "out_time": "12-02-19 2:00",
+    "status": "unassigned"
+  }
+]

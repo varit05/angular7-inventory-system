@@ -1,24 +1,33 @@
-<h4>Assigned Devices</h4>
-<table class="table">
-  <thead class="thead-dark">
+<div class="row m-2">
+	<div class="offset-md-3 col-6"><h4 class="animated slower bounceInRight">Assigned Devices</h4></div>
+	<div class="col-3" align="right">
+		<button class="btn btn-outline-primary mr-3" (click)="downloadAsExcel()">
+    Download As Excel</button>
+  </div>
+</div>
+
+<table class="table table-bordered">
+  <thead class="thead">
     <tr>
       <th scope="col">#</th>
       <th scope="col">Emp. ID</th>
       <th scope="col">Device</th>
+      <th scope="col">Owner</th>
       <th scope="col">In-time</th>
-      <th scope="col">Actions</th>
+      <th scope="col" class="text-center">Actions</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody class="animated slower bounceInLeft">
     <tr *ngFor="let device of assignedDevices; let i = index;">
       <th scope="row">{{ i + 1 }}</th>
       <td>{{ device.emp_id }}</td>
       <td>{{ device.device_name }}</td>
+      <td>{{ device.owner }}</td>
       <td>{{ device.in_time | date:'dd/MM/yyyy, hh:mm a'  }}</td>
-      <td>
+      <td align="right">
         <button
           [swal]="{ title: 'Are you sure you want to mark ' + device.device_name + ' as unassigned?', showCancelButton: true }"
-          class="btn btn-danger" 
+          class="btn btn-outline-danger btn-sm" 
           (confirm)="markDeviceAsUnassigned(device)">
           Mark as Unassigned
         </button>
@@ -27,29 +36,31 @@
   </tbody>
 </table>
 
-<h4>Unassigned Devices</h4>
-<table class="table">
-  <thead class="thead-dark">
+<h4 class="animated slower bounceInLeft">Unassigned Devices</h4>
+<table class="table table-bordered">
+  <thead class="thead">
     <tr>
       <th scope="col">#</th>
       <th scope="col">Emp. ID</th>
       <th scope="col">Device</th>
+      <th scope="col">Owner</th>
       <th scope="col">In-time</th>
       <th scope="col">Out-time</th>
-      <th scope="col">Actions</th>
+      <th scope="col" class="text-center">Actions</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody class="animated slow bounceInRight ">
     <tr
       *ngFor="let device of unAssignedDevices; let i = index;">
       <th scope="row">{{ i + 1 }}</th>
       <td>{{ device.emp_id }}</td>
       <td>{{ device.device_name }}</td>
+      <td>{{ device.owner }}</td>
       <td>{{ device.in_time | date:'dd/MM/yyyy, hh:mm a' }}</td>
       <td>{{ device.out_time | date:'dd/MM/yyyy, hh:mm a' }}</td>
-      <td>
+      <td align="right">
         <button
-          class="btn btn-success"
+          class="btn btn-outline-success btn-sm"
           [swal]="{ title: 'Enter the EmpID', input: 'number' }"
           (confirm)="markDeviceAsAssigned($event, device)">
           Mark as Assigned

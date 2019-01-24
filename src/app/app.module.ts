@@ -6,6 +6,7 @@ import { AngularFireDatabaseModule } from "@angular/fire/database";
 import { AppComponent } from "./app.component";
 import { CoreModule } from "./core/core.module";
 import { SharedModule } from "./shared/shared.module";
+import { ExcelService } from "./shared/services/excel.service"
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,7 +19,7 @@ import { SharedModule } from "./shared/shared.module";
     ),
     AngularFireDatabaseModule
   ],
-  providers: [],
+  providers: [ExcelService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

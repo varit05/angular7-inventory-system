@@ -1,13 +1,17 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { DatePipe } from '@angular/common';
 import { HttpClient } from "@angular/common/http";
 import { AngularFireDatabase } from '@angular/fire/database';
 
 import { Observable } from 'rxjs';
 
+import { ExcelService } from '../../services/excel.service';
+
 @Component({
   selector: "app-assigned",
   templateUrl: "./assigned.component.html",
-  styleUrls: ["./assigned.component.css"]
+  styleUrls: ["./assigned.component.css"],
+  providers: [DatePipe]
 })
 export class AssignedComponent implements OnInit {
   fullDevicesData: any[];
@@ -19,7 +23,9 @@ export class AssignedComponent implements OnInit {
 
   constructor(
     private db: AngularFireDatabase, 
-    private http: HttpClient
+    private http: HttpClient,
+    private excelService: ExcelService,
+    private datePipe: DatePipe
   ) {}
 
   ngOnInit() {
@@ -64,4 +70,12 @@ export class AssignedComponent implements OnInit {
       .push(objectToPush);
   }
 
+  downloadAsExcel():void {
+    this.db.list('events').snapshotChanges().subscribe(devices => {
+      let devicesEvent = devices.map(deviceSnapshot => {
+          return { ...deviceSnapshot.payload.val() };
+        });
+        this.excelService.exportAsExcelFile(devicesEvent, `DeviceEvent ${this.datePipe.transform(Date.now(), 'dd-MM-yyyy hh:mm a')}`);
+    });
+  }
 }
